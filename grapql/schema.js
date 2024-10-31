@@ -1,5 +1,5 @@
 const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLNonNull, GraphQLFloat } = require('graphql');
-const { sequelize, Cotizacion } = require('./database'); // Solo esta línea es necesaria
+const { sequelize, Cotizacion } = require('./database');
 
 // Definir el tipo Cotizacion
 const CotizacionType = new GraphQLObjectType({
@@ -12,7 +12,7 @@ const CotizacionType = new GraphQLObjectType({
     }
 });
 
-// Consulta para obtener una cotización por fecha exacta o la más cercana
+//obtener una cotización por fecha
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -28,7 +28,7 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
-// Mutación para agregar una nueva cotización
+// agregar una nueva cotización
 const Mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {

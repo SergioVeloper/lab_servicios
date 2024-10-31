@@ -32,5 +32,5 @@ const Cotizacion = sequelize.define('Cotizacion', {
     updatedAt: 'updated_at',
 });
 
-// Exporta tanto sequelize como Cotizacion si necesitas usar ambos en otros archivos
+
 module.exports = { sequelize, Cotizacion };

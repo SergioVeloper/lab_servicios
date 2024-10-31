@@ -1,7 +1,7 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema');
-const { sequelize } = require('./database'); // Corrige el nombre a "sequelize"
+const { sequelize } = require('./database');
 
 const app = express();
 
@@ -10,7 +10,7 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
-sequelize.authenticate() // Cambia "sequilize" a "sequelize"
+sequelize.authenticate()
     .then(() => {
         console.log('Database connected');
         app.listen(4000, () => {
