@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('cotizaciones', CotizacionController::class);
+Route::get('cotizaciones/fecha', [CotizacionController::class, 'getCotizacionPorFecha']);

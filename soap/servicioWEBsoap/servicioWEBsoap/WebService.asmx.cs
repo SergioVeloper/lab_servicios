@@ -56,19 +56,28 @@ namespace servicioWEBsoap
         }
 
         [WebMethod]
-        public string registrarCotizacion(string fecha, double monto, double monto_oficial)
+        public string registrarCotizacion(string fecha, double cotizacion, double cotizacion_oficial)
         {
             Conexion db = new Conexion();
             db.OpenConnection();
 
-            string query = "INSERT INTO cotizaciones (fecha, cotizacion, cotizacion_oficial) VALUES ('" + fecha + "', " + monto + ", " + monto_oficial + ")";
+            // Obtener la fecha y hora actual para los campos created_at y updated_at
+            string fechaHoraActual = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            string query = "INSERT INTO cotizaciones (fecha, cotizacion, cotizacion_oficial, created_at, updated_at) VALUES (@fecha, @cotizacion, @cotizacion_oficial, @created_at, @updated_at)";
 
             MySqlCommand cmd = new MySqlCommand(query, db.GetConnection());
+            cmd.Parameters.AddWithValue("@fecha", fecha);
+            cmd.Parameters.AddWithValue("@cotizacion", cotizacion);
+            cmd.Parameters.AddWithValue("@cotizacion_oficial", cotizacion_oficial);
+            cmd.Parameters.AddWithValue("@created_at", fechaHoraActual);
+            cmd.Parameters.AddWithValue("@updated_at", fechaHoraActual);
+
             cmd.ExecuteNonQuery();
 
             db.CloseConnection();
 
-            return "Cotizacion registrada exitosamente";
+            return "Cotización registrada exitosamente";
         }
 
 
